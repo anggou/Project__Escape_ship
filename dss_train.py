@@ -90,7 +90,7 @@ if __name__ == "__main__":
         done = False
         score = 1
         # env 초기화
-        state = env.reset()  # 15개 변수
+        state = env.reset()  # 12개 변수
         state = np.reshape(state, [1, state_size])  # state_size = 12개
 
         while not done:
@@ -105,7 +105,7 @@ if __name__ == "__main__":
             # 샘플로 모델 학습
 
             agent.train_model(state, action, reward, next_state, next_action, done) # 12,1,1,12,1,1
-            if done == 1 :
+            if done == 1 : # 불만났을때 추가
                 score += reward
             state = next_state
 

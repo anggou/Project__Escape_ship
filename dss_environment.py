@@ -10,15 +10,15 @@ W_UNIT = 15  # 픽셀 수
 WIDTH = 30  # 그리드 가로
 FLOOR = 17
 PhotoImage = ImageTk.PhotoImage
-AG = [11, 8, 7]  # z,y,x
-BOAT = ()
+AG = [15, 8, 27]  # z,y,x
 lifeboat_location_1 = [7, 3, 9]  # 7번째층,shelterDK , (9,3)
 lifeboat_location_2 = [7, 18, 9]  # 7번째층,shelterDK , (9,3)
-fire_location = [3, 3, 9]
-lifeboat_reward = 1
-fire_reward = -1
+fire_location = [25, 3, 9]
+lifeboat_reward = 10
+fire_reward = -2
 block_reward = -1
-
+up_stair_reward = 4
+down_stair_reward = -1
 
 maze = [
     [
@@ -470,10 +470,17 @@ class Env(tk.Tk):
         self.set_reward(lifeboat_location_1, lifeboat_reward)
         self.set_reward(lifeboat_location_2, lifeboat_reward)
         self.set_reward(fire_location, fire_reward)
+        for z in range(FLOOR):
+            for y in range(HEIGHT):
+                for x in range(WIDTH):
+                    if maze[z][y][x] == 1:
+                        self.set_reward([z, y, x], block_reward)
+                    if maze[z][y][x] == 2:
+                        self.set_reward([z, y, x], up_stair_reward)
         self.rectangle = self.canvas.create_image(place_tk(AG)[0],
                                                   place_tk(AG)[1],
                                                   image=self.shapes[0])  # 3D>2D
-        print(self.rewards)
+        # print(self.rewards)
         # print(self.goal)
 
     def _build_canvas(self):
@@ -483,22 +490,6 @@ class Env(tk.Tk):
         for z in range(FLOOR):
             for y in range(HEIGHT):
                 for x in range(WIDTH):
-                    if maze[z][y][x] == 1:
-                        for i in range(1, 6):
-                            if z == i:
-                                canvas.create_image(x * W_UNIT + W_UNIT / 2,
-                                                    (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2,
-                                                    image=self.shapes[5])
-                        for i in range(6, 11):
-                            if z == i:
-                                canvas.create_image(WIDTH * W_UNIT + x * W_UNIT + W_UNIT / 2,
-                                                    (z - 6) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2,
-                                                    image=self.shapes[5])
-                        for i in range(11, FLOOR - 1):
-                            if z == i:
-                                canvas.create_image(2 * WIDTH * W_UNIT + x * W_UNIT + W_UNIT / 2,
-                                                    (z - 11) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2,
-                                                    image=self.shapes[5])
                     if maze[z][y][x] == 0:
                         for i in range(1, 6):
                             if z == i:
@@ -515,22 +506,6 @@ class Env(tk.Tk):
                                 canvas.create_image(2 * WIDTH * W_UNIT + x * W_UNIT + W_UNIT / 2,
                                                     (z - 11) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2,
                                                     image=self.shapes[6])
-                    if maze[z][y][x] == 2:
-                        for i in range(1, 6):
-                            if z == i:
-                                canvas.create_image(x * W_UNIT + W_UNIT / 2
-                                                    , (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2,
-                                                    image=self.shapes[2])
-                        for i in range(6, 11):
-                            if z == i:
-                                canvas.create_image(WIDTH * W_UNIT + x * W_UNIT + W_UNIT / 2,
-                                                    (z - 6) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2,
-                                                    image=self.shapes[2])
-                        for i in range(11, FLOOR - 1):
-                            if z == i:
-                                canvas.create_image(2 * WIDTH * W_UNIT + x * W_UNIT + W_UNIT / 2,
-                                                    (z - 11) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2,
-                                                    image=self.shapes[2])
 
         # 메인 격자
         for col in range(0, 3 * WIDTH * W_UNIT, W_UNIT):  # 0~400 by 80
@@ -571,8 +546,13 @@ class Env(tk.Tk):
         self.set_reward(lifeboat_location_1, lifeboat_reward)
         self.set_reward(lifeboat_location_2, lifeboat_reward)
         self.set_reward(fire_location, fire_reward)
-
-
+        for z in range(FLOOR):
+            for y in range(HEIGHT):
+                for x in range(WIDTH):
+                    if maze[z][y][x] == 1:
+                        self.set_reward([z, y, x], block_reward)
+                    if maze[z][y][x] == 2:
+                        self.set_reward([z, y, x], up_stair_reward)
 
     def set_reward(self, state, reward):  # 들어가는 state는 3D
 
@@ -580,16 +560,37 @@ class Env(tk.Tk):
         tk_x = place_tk(state)[0]
         tk_y = place_tk(state)[1]
 
-        if reward > 0:
+        if reward == lifeboat_reward:
             temp['reward'] = reward
             temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[4])
             # print(reward, tk_x, tk_y)
             self.goal.append(temp['figure'])
         # 보상이 1이면 출력 4개
-        elif reward == -1:  # -1
+        elif reward == fire_reward:  # -1
             # temp['direction'] = -1
             temp['reward'] = reward
             temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[3])
+        elif reward == block_reward:  # -1
+            if state[0] < 6:
+                temp['reward'] = reward
+                temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[5])
+
+            if 5 < state[0] < 11:
+                temp['reward'] = reward
+                temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[5])
+            if 10 < state[0] < 18:
+                temp['reward'] = reward
+                temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[5])
+        elif reward == up_stair_reward:  # -1
+            if state[0] < 6:
+                temp['reward'] = reward
+                temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[2])
+            if 5 < state[0] < 11:
+                temp['reward'] = reward
+                temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[2])
+            if 10 < state[0] < 18:
+                temp['reward'] = reward
+                temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[2])
         temp['coords'] = self.canvas.coords(temp['figure'])
         temp['state'] = state  # 입력을 그대로 3d
         # print(temp['state'])
@@ -637,7 +638,7 @@ class Env(tk.Tk):
         check = self.check_if_reward(next_coords)  # 2D > 3D
         done = check['if_goal']
         # if done == 1:
-        #     reward = check['rewards']
+        reward = check['rewards']
         # else :
         #     reward = 0
         # reward = check['rewards']
@@ -656,15 +657,21 @@ class Env(tk.Tk):
         states = list()
 
         for reward in self.rewards:  # 총8개 (장애물 1개 * 4, 목표 1개 * 4)
-            reward_location = reward['state']
-            states.append(reward_location[0] - location[0])  # 상대거리
-            states.append(reward_location[1] - location[1])  # 상대거리
-            states.append(reward_location[2] - location[2])  # 상대거리
-            if reward['reward'] < 0:
-                states.append(-1)
-                # states.append(reward['direction'])
-            else:
+            # states.append(reward['direction'])
+            if reward['reward'] == lifeboat_reward :
+                reward_location = reward['state']
+                states.append(reward_location[0] - location[0])  # 상대거리
+                states.append(reward_location[1] - location[1])  # 상대거리
+                states.append(reward_location[2] - location[2])  # 상대거리
                 states.append(1)
+            elif reward['reward'] == fire_reward :
+                reward_location = reward['state']
+                states.append(reward_location[0] - location[0])  # 상대거리
+                states.append(reward_location[1] - location[1])  # 상대거리
+                states.append(reward_location[2] - location[2])  # 상대거리
+                states.append(-1)
+            else:
+                pass
 
         return states
 
@@ -705,7 +712,7 @@ class Env(tk.Tk):
 
         base_action = np.array([0, 0])  # 앞뒤 , 좌우 , Tkinter
         location = self.find_rectangle(target)  # tkinter를 3차원으로
-        print(location)
+        # print(location)
         if action == 0 and location[2] < WIDTH - 1 and maze[location[0]][location[1]][location[2] + 1] != 1:
             base_action[0] += W_UNIT  # 앞
         elif action == 1 and location[2] > 0 and maze[location[0]][location[1]][location[2] - 1] != 1:
