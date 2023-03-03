@@ -901,8 +901,21 @@ class Env(tk.Tk):
         self.rectangle = self.canvas.create_image(place_tk(AG)[0],
                                                   place_tk(AG)[1],
                                                   image=self.shapes[0])  # 3D>2D
-        # print(self.rewards)
-        # print(self.goal)
+
+        # 메인 격자
+        for col in range(0, 3 * WIDTH * W_UNIT, W_UNIT):  # 0~400 by 80
+            x0, y0, x1, y1 = col, 0, col, HEIGHT * H_UNIT * 5
+            self.canvas.create_line(x0, y0, x1, y1)
+        for row in range(0, 5 * HEIGHT * H_UNIT, H_UNIT):  # 0~400 by 80
+            x0, y0, x1, y1 = 0, row, WIDTH * W_UNIT * 3, row
+            self.canvas.create_line(x0, y0, x1, y1)
+        # 층별 구분
+        for col in range(0, 3 * WIDTH * W_UNIT, W_UNIT * WIDTH):  # 0~400 by 80
+            x0, y0, x1, y1 = col, 0, col, HEIGHT * H_UNIT * 5
+            self.canvas.create_line(x0, y0, x1, y1, fill='red')
+        for row in range(0, 5 * HEIGHT * H_UNIT, H_UNIT * HEIGHT):  # 0~400 by 80
+            x0, y0, x1, y1 = 0, row, WIDTH * W_UNIT * 3, row
+            self.canvas.create_line(x0, y0, x1, y1, fill='red')
 
     def _build_canvas(self):
 
@@ -927,22 +940,6 @@ class Env(tk.Tk):
                                 canvas.create_image(2 * WIDTH * W_UNIT + x * W_UNIT + W_UNIT / 2,
                                                     (z - 11) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2,
                                                     image=self.shapes[6])
-
-        # 메인 격자
-        for col in range(0, 3 * WIDTH * W_UNIT, W_UNIT):  # 0~400 by 80
-            x0, y0, x1, y1 = col, 0, col, HEIGHT * H_UNIT * 5
-            canvas.create_line(x0, y0, x1, y1)
-        for row in range(0, 5 * HEIGHT * H_UNIT, H_UNIT):  # 0~400 by 80
-            x0, y0, x1, y1 = 0, row, WIDTH * W_UNIT * 3, row
-            canvas.create_line(x0, y0, x1, y1)
-        # 층별 구분
-        for col in range(0, 3 * WIDTH * W_UNIT, W_UNIT * WIDTH):  # 0~400 by 80
-            x0, y0, x1, y1 = col, 0, col, HEIGHT * H_UNIT * 5
-            canvas.create_line(x0, y0, x1, y1, fill='red')
-        for row in range(0, 5 * HEIGHT * H_UNIT, H_UNIT * HEIGHT):  # 0~400 by 80
-            x0, y0, x1, y1 = 0, row, WIDTH * W_UNIT * 3, row
-            canvas.create_line(x0, y0, x1, y1, fill='red')
-
         canvas.pack()
 
         return canvas
@@ -986,7 +983,20 @@ class Env(tk.Tk):
                             self.set_reward([z, y, x], right_reward)
                         if maze[z][y][x] == 4:
                             self.set_reward([z, y, x], wrong_reward)
-
+        # 메인 격자
+        for col in range(0, 3 * WIDTH * W_UNIT, W_UNIT):  # 0~400 by 80
+            x0, y0, x1, y1 = col, 0, col, HEIGHT * H_UNIT * 5
+            self.canvas.create_line(x0, y0, x1, y1)
+        for row in range(0, 5 * HEIGHT * H_UNIT, H_UNIT):  # 0~400 by 80
+            x0, y0, x1, y1 = 0, row, WIDTH * W_UNIT * 3, row
+            self.canvas.create_line(x0, y0, x1, y1)
+        # 층별 구분
+        for col in range(0, 3 * WIDTH * W_UNIT, W_UNIT * WIDTH):  # 0~400 by 80
+            x0, y0, x1, y1 = col, 0, col, HEIGHT * H_UNIT * 5
+            self.canvas.create_line(x0, y0, x1, y1, fill='red')
+        for row in range(0, 5 * HEIGHT * H_UNIT, H_UNIT * HEIGHT):  # 0~400 by 80
+            x0, y0, x1, y1 = 0, row, WIDTH * W_UNIT * 3, row
+            self.canvas.create_line(x0, y0, x1, y1, fill='red')
     def set_reward(self, state, reward):  # 들어가는 state는 3D
 
         temp = {}
@@ -1008,10 +1018,10 @@ class Env(tk.Tk):
             temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[5])
         elif reward == right_reward:  # -1
             temp['reward'] = reward
-            temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[7])
+            temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[2])
         elif reward == wrong_reward:  # -1
             temp['reward'] = reward
-            temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[8])
+            temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[2])
         elif reward == stair_reward:  # -1
             temp['reward'] = reward
             temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[2])
@@ -1052,8 +1062,8 @@ class Env(tk.Tk):
         self.counter += 1
         self.render()
 
-        if self.counter % 2 == 1:
-            self.rewards = self.move_rewards()  # 에이전트 의 위치에 따라 , 보상을 위치를 변경 , 해당 층으로
+        # if self.counter % 2 == 1:
+        #     self.rewards = self.move_rewards()  # 에이전트 의 위치에 따라 , 보상을 위치를 변경 , 해당 층으로
 
         next_coords = self.move(self.rectangle, action)  # 3D 로 출력 s'
         # print(next_coords)
