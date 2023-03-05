@@ -13,6 +13,12 @@ PhotoImage = ImageTk.PhotoImage
 AG = [15, 8, 27]  # z,y,x
 lifeboat_location_1 = [7, 3, 9]  # 7번째층,shelterDK , (9,3)
 lifeboat_location_2 = [7, 18, 9]  # 7번째층,shelterDK , (9,3)
+flag_location_1_1 = [7, 3, 24]  # 7번째층,shelterDK , (9,3)
+flag_location_1_2 = [7, 18, 24]  # 7번째층,shelterDK , (9,3)
+flag_location_2_1 = [7, 4, 12]  # 7번째층,shelterDK , (9,3)
+flag_location_2_2 = [7, 17, 12]  # 7번째층,shelterDK , (9,3)
+flag_location_3_1 = [7, 3, 9]  # 7번째층,shelterDK , (9,3)
+flag_location_3_2 = [7, 18, 9]  # 7번째층,shelterDK , (9,3)
 fire_location = [25, 3, 9]
 lifeboat_reward = 10
 fire_reward = -2
@@ -20,6 +26,13 @@ block_reward = -1
 stair_reward = 0
 right_reward = 4
 wrong_reward = -1
+flag_reward_1_1 = 1
+flag_reward_1_2 = 1
+flag_reward_2_1 = 2
+flag_reward_2_2 = 2
+flag_reward_3_1 = 3
+flag_reward_3_2 = 3
+
 '''
 maze = [
     [
@@ -901,6 +914,14 @@ class Env(tk.Tk):
         self.rectangle = self.canvas.create_image(place_tk(AG)[0],
                                                   place_tk(AG)[1],
                                                   image=self.shapes[0])  # 3D>2D
+        self.set_reward(flag_location_1_1, flag_reward_1_1)
+        self.set_reward(flag_location_1_2, flag_reward_1_2)
+        self.set_reward(flag_location_2_1, flag_reward_2_1)
+        self.set_reward(flag_location_2_2, flag_reward_2_2)
+        self.set_reward(flag_location_3_1, flag_reward_3_1)
+        self.set_reward(flag_location_3_2, flag_reward_3_2)
+
+
 
         # 메인 격자
         for col in range(0, 3 * WIDTH * W_UNIT, W_UNIT):  # 0~400 by 80
@@ -1025,6 +1046,24 @@ class Env(tk.Tk):
         elif reward == stair_reward:  # -1
             temp['reward'] = reward
             temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[2])
+        elif reward == flag_reward_1_1:  # -1
+            temp['reward'] = reward
+            temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
+        elif reward == flag_reward_1_2:  # -1
+            temp['reward'] = reward
+            temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
+        elif reward == flag_reward_2_1:  # -1
+            temp['reward'] = reward
+            temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
+        elif reward == flag_reward_2_2:  # -1
+            temp['reward'] = reward
+            temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
+        elif reward == flag_reward_3_1:  # -1
+            temp['reward'] = reward
+            temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
+        elif reward == flag_reward_3_2:  # -1
+            temp['reward'] = reward
+            temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
         temp['coords'] = self.canvas.coords(temp['figure'])
         temp['state'] = state  # 입력을 그대로 3d
         self.rewards.append(temp)

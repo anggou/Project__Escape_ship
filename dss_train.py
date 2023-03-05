@@ -78,7 +78,7 @@ class DeepSARSAgent:
 
 if __name__ == "__main__":
     # 환경과 에이전트 생성
-    env = Env(render_speed=0.001)
+    env = Env(render_speed=0.1) # 0.001
     state_size = 12
     action_space = [0, 1, 2, 3, 4, 5]
     action_size = len(action_space)
