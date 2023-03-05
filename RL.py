@@ -510,6 +510,17 @@ class env(tk.Frame):
         z = location[0]
         return ((z // 5) - five(z)) * WIDTH * W_UNIT + x * W_UNIT, ((z - 1) % 5) * (H_UNIT * HEIGHT) + y * H_UNIT
 
+    def move_forward(self, agent):
+        self.canvas.move(agent, 10, 0)
+    def move_back(self, agent):
+        self.canvas.move(agent, -10, 0)
+
+    def move_left(self, agent):
+        self.canvas.move(agent, 0, -10)
+
+    def move_right(self, agent):
+        self.canvas.move(agent, 0, 10)
+
     def _build_canvas(self):
         canvas = tk.Canvas(self, width=3 * WIDTH * W_UNIT, height=5 * HEIGHT * H_UNIT)
 
@@ -579,14 +590,21 @@ class env(tk.Frame):
                                                              2 * WIDTH * W_UNIT + x * W_UNIT + W_UNIT,
                                                              (z - 11) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT,
                                                              fill='#FFCC00')
-        # self.rectangle = canvas.create_rectangle(((AG[0] // 5) - five(AG[0])) * WIDTH * W_UNIT + AG[2] * W_UNIT,
-        #                                               ((AG[0] - 1) % 5) * (H_UNIT * HEIGHT) + AG[1] * H_UNIT,
-        #                                               ((AG[0] // 5) - five(AG[0])) * WIDTH * W_UNIT + AG[
-        #                                                   2] * W_UNIT + W_UNIT,
-        #                                               ((AG[0] - 1) % 5) * (H_UNIT * HEIGHT) + AG[1] * H_UNIT + H_UNIT,
-        #                                               fill='blue')
-        print(self.Assign_state(AG)[0],self.Assign_state(AG)[1])
+        self.rectangle = canvas.create_rectangle(((AG[0] // 5) - five(AG[0])) * WIDTH * W_UNIT + AG[2] * W_UNIT,
+                                                      ((AG[0] - 1) % 5) * (H_UNIT * HEIGHT) + AG[1] * H_UNIT,
+                                                      ((AG[0] // 5) - five(AG[0])) * WIDTH * W_UNIT + AG[
+                                                          2] * W_UNIT + W_UNIT,
+                                                      ((AG[0] - 1) % 5) * (H_UNIT * HEIGHT) + AG[1] * H_UNIT + H_UNIT,
+                                                      fill='blue')
+        # print(self.Assign_state(AG)[0],self.Assign_state(AG)[1])
         self.rectangle = canvas.create_image(self.Assign_state(AG)[0],self.Assign_state(AG)[1], image=self.load_images()[0])
+        self.master.bind('<Up>', self.move_up)
+        self.master.bind('<Down>', self.move_down)
+        self.master.bind('<Left>', self.move_left)
+        self.master.bind('<Right>', self.move_right)
+
+
+
         canvas.create_image(self.Assign_state(AG)[0],self.Assign_state(AG)[1], image=self.load_images()[0])
         # print(self.rectangle)
         # # canvas.create_image(100, 200, image=self.load_images()[5])
