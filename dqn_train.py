@@ -68,6 +68,7 @@ class DQNAgent:
     def get_action(self, state):
         if np.random.rand() <= self.epsilon:
             return random.randrange(self.action_size)
+            print("Explore")
         else:
             q_value = self.model(state)
             return np.argmax(q_value[0])

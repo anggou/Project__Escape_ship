@@ -19,9 +19,9 @@ flag_location_2_1 = [7, 4, 12]  # 7번째층,shelterDK , (9,3)
 flag_location_2_2 = [7, 17, 12]  # 7번째층,shelterDK , (9,3)
 flag_location_3_1 = [7, 3, 9]  # 7번째층,shelterDK , (9,3)
 flag_location_3_2 = [7, 18, 9]  # 7번째층,shelterDK , (9,3)
-fire_location = [25, 3, 9]
+fire_location = [9, 3, 9]
 lifeboat_reward = 10
-fire_reward = -2
+fire_reward = -10
 block_reward = -1
 stair_reward = 0
 right_reward = 4
@@ -1104,26 +1104,20 @@ class Env(tk.Tk):
         # if self.counter % 2 == 1:
         #     self.rewards = self.move_rewards()  # 에이전트 의 위치에 따라 , 보상을 위치를 변경 , 해당 층으로
 
-        next_coords = self.move(self.rectangle, action)  # 3D 로 출력 s'
+        next_state = self.move(self.rectangle, action)  # 3D 로 출력 s'
         # print(next_coords)
-        check = self.check_if_reward(next_coords)  # 2D > 3D
+        check = self.check_if_reward(next_state)  # reward, goal dict
         done = check['if_goal']
-        # if done == 1:
         reward = check['rewards']
-        # else :
-        #     reward = 0
-        # reward = check['rewards']
-        # if state_act = lifeboat_location_1 or lifeboat_location_2:
-        #     print(reward, done, action, state_act)
-        self.canvas.tag_raise(self.rectangle)
+        self.canvas.tag_raise(self.rectangle) #눈에 띄게 해줌
 
         state_all = self.get_state(self.rectangle)
-
+        print("move_{} next_state_{} reward_{}".format(action,next_state,reward))
         return state_all, reward, done
 
     def get_state(self, Agent):
 
-        location = self.find_rectangle(Agent)  # 2D > 3D
+        location = self.find_rectangle(Agent)  # rec > 3D
 
         states = list()
 
