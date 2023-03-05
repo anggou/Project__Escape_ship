@@ -67,8 +67,8 @@ class DQNAgent:
     # 입실론 탐욕 정책으로 행동 선택
     def get_action(self, state):
         if np.random.rand() <= self.epsilon:
-            return random.randrange(self.action_size)
             print("Explore")
+            return random.randrange(self.action_size)
         else:
             q_value = self.model(state)
             return np.argmax(q_value[0])
@@ -157,7 +157,7 @@ if __name__ == "__main__":
                 # 에피소드마다 학습 결과 출력
                 print("episode: {:3d} | score: {:3d} | epsilon: {:.3f}".format(
                     e, score, agent.epsilon))
-
+                self.epsilon_decay = 0.999
                 # 에피소드마다 학습 결과 그래프로 저장
                 scores.append(score)
                 episodes.append(e)

@@ -938,6 +938,11 @@ class Env(tk.Tk):
             x0, y0, x1, y1 = 0, row, WIDTH * W_UNIT * 3, row
             self.canvas.create_line(x0, y0, x1, y1, fill='red')
 
+    def __del__(self):
+        # 캔버스 객체 삭제 및 자원 해제
+        self.canvas.delete('all')
+        self.canvas.quit()
+
     def _build_canvas(self):
 
         canvas = tk.Canvas(self, width=3 * WIDTH * W_UNIT, height=5 * HEIGHT * H_UNIT)
