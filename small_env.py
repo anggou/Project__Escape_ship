@@ -13,12 +13,12 @@ PhotoImage = ImageTk.PhotoImage
 AG = [1, 8, 27]  # z,y,x
 lifeboat_location_1 = [1, 3, 9]
 lifeboat_location_2 = [1, 18, 9]
-# flag_location_1_1 = [7, 3, 24]
-# flag_location_1_2 = [7, 18, 24]
-# flag_location_2_1 = [7, 4, 12]
-# flag_location_2_2 = [7, 17, 12]
-# flag_location_3_1 = [7, 3, 9]
-# flag_location_3_2 = [7, 18, 9]
+flag_location_1_1 = [7, 3, 24]
+flag_location_1_2 = [7, 18, 24]
+flag_location_2_1 = [7, 4, 12]
+flag_location_2_2 = [7, 17, 12]
+flag_location_3_1 = [7, 3, 9]
+flag_location_3_2 = [7, 18, 9]
 fire_location = [1, 4, 9]
 lifeboat_reward = 10
 fire_reward = -10
@@ -26,12 +26,12 @@ block_reward = -1
 stair_reward = 0
 right_reward = 4
 wrong_reward = -1
-# flag_reward_1_1 = 1
-# flag_reward_1_2 = 1
-# flag_reward_2_1 = 2
-# flag_reward_2_2 = 2
-# flag_reward_3_1 = 3
-# flag_reward_3_2 = 3
+flag_reward_1_1 = 1
+flag_reward_1_2 = 1
+flag_reward_2_1 = 2
+flag_reward_2_2 = 2
+flag_reward_3_1 = 3
+flag_reward_3_2 = 3
 
 maze = [
     [
@@ -165,12 +165,12 @@ class Env(tk.Tk):
         self.rectangle = self.canvas.create_image(place_tk(AG)[0],
                                                   place_tk(AG)[1],
                                                   image=self.shapes[0])  # 3D>2D
-        # self.set_reward(flag_location_1_1, flag_reward_1_1)
-        # self.set_reward(flag_location_1_2, flag_reward_1_2)
-        # self.set_reward(flag_location_2_1, flag_reward_2_1)
-        # self.set_reward(flag_location_2_2, flag_reward_2_2)
-        # self.set_reward(flag_location_3_1, flag_reward_3_1)
-        # self.set_reward(flag_location_3_2, flag_reward_3_2)
+        self.set_reward(flag_location_1_1, flag_reward_1_1)
+        self.set_reward(flag_location_1_2, flag_reward_1_2)
+        self.set_reward(flag_location_2_1, flag_reward_2_1)
+        self.set_reward(flag_location_2_2, flag_reward_2_2)
+        self.set_reward(flag_location_3_1, flag_reward_3_1)
+        self.set_reward(flag_location_3_2, flag_reward_3_2)
 
         # 메인 격자
         for col in range(0, 1 * WIDTH * W_UNIT, W_UNIT):  # 0~400 by 80
@@ -196,21 +196,21 @@ class Env(tk.Tk):
         y = lifeboat_location_1[1] - dy
         x = lifeboat_location_1[2] - dx
         self.canvas.create_text(x * W_UNIT + W_UNIT / 2 + W_UNIT / 4,
-                                (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2,
-                                fill="black", text=round(q_values[0][0].numpy(),2), font=('Helvetica', font), anchor="nw", tags="text")
-        self.canvas.create_text(x * W_UNIT + W_UNIT / 2 - W_UNIT / 4,
-                                (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2,
-                                fill="black", text=round(q_values[0][1].numpy(),2), font=('Helvetica', font), anchor="nw", tags="text")
-        self.canvas.create_text(x * W_UNIT + W_UNIT / 2,
-                                (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2 + H_UNIT / 4,
-                                fill="black", text=round(q_values[0][2].numpy(),2), font=('Helvetica', font), anchor="nw", tags="text")
-        self.canvas.create_text(x * W_UNIT + W_UNIT / 2,
-                                (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2 - H_UNIT / 4,
-                                fill="black", text=round(q_values[0][3].numpy(),2), font=('Helvetica', font), anchor="nw", tags="text")
-        self.canvas.create_text(x * W_UNIT + W_UNIT / 2, (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2,
-                                fill="black", text=round(q_values[0][4].numpy(),2), font=('Helvetica', font), anchor="nw", tags="text")
-        self.canvas.create_text(x * W_UNIT + W_UNIT / 2, (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2,
-                                fill="black", text=round(q_values[0][5].numpy(),2), font=('Helvetica', font), anchor="nw", tags="text")
+                                (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2- H_UNIT / 4,
+                                fill="black", text=round(q_values[0][0].numpy(),1), font=('Helvetica', font), anchor="nw", tags="text")
+        self.canvas.create_text(x * W_UNIT + W_UNIT / 2 - W_UNIT / 2,
+                                (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2- H_UNIT / 4,
+                                fill="black", text=round(q_values[0][1].numpy(),1), font=('Helvetica', font), anchor="nw", tags="text")
+        self.canvas.create_text(x * W_UNIT + W_UNIT / 3,
+                                (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2 - H_UNIT / 4- H_UNIT / 4,
+                                fill="black", text=round(q_values[0][2].numpy(),1), font=('Helvetica', font), anchor="nw", tags="text")
+        self.canvas.create_text(x * W_UNIT + W_UNIT / 3,
+                                (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2 + H_UNIT / 3,
+                                fill="black", text=round(q_values[0][3].numpy(),1), font=('Helvetica', font), anchor="nw", tags="text")
+        self.canvas.create_text(x * W_UNIT + W_UNIT / 3, (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2- H_UNIT / 4,
+                                fill="black", text=round(q_values[0][4].numpy(),1), font=('Helvetica', font), anchor="nw", tags="text")
+        self.canvas.create_text(x * W_UNIT + W_UNIT / 3, (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2,
+                                fill="black", text=round(q_values[0][5].numpy(),1), font=('Helvetica', font), anchor="nw", tags="text")
         print(q_values[0][5])
     def _build_canvas(self):
         canvas = tk.Canvas(self, width=3 * WIDTH * W_UNIT, height=5 * HEIGHT * H_UNIT)
@@ -256,7 +256,12 @@ class Env(tk.Tk):
             self.canvas.delete(reward['figure'])
         self.rewards.clear()
         self.goal.clear()
-
+        self.set_reward(flag_location_1_1, flag_reward_1_1)
+        self.set_reward(flag_location_1_2, flag_reward_1_2)
+        self.set_reward(flag_location_2_1, flag_reward_2_1)
+        self.set_reward(flag_location_2_2, flag_reward_2_2)
+        self.set_reward(flag_location_3_1, flag_reward_3_1)
+        self.set_reward(flag_location_3_2, flag_reward_3_2)
         self.set_reward(lifeboat_location_1, lifeboat_reward)
         self.set_reward(lifeboat_location_2, lifeboat_reward)
         self.set_reward(fire_location, fire_reward)
@@ -321,24 +326,24 @@ class Env(tk.Tk):
         elif reward == stair_reward:  # -1
             temp['reward'] = reward
             temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[2])
-        # elif reward == flag_reward_1_1:  # -1
-        #     temp['reward'] = reward
-        #     temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
-        # elif reward == flag_reward_1_2:  # -1
-        #     temp['reward'] = reward
-        #     temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
-        # elif reward == flag_reward_2_1:  # -1
-        #     temp['reward'] = reward
-        #     temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
-        # elif reward == flag_reward_2_2:  # -1
-        #     temp['reward'] = reward
-        #     temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
-        # elif reward == flag_reward_3_1:  # -1
-        #     temp['reward'] = reward
-        #     temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
-        # elif reward == flag_reward_3_2:  # -1
-        #     temp['reward'] = reward
-        #     temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
+        elif reward == flag_reward_1_1:  # -1
+            temp['reward'] = reward
+            temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
+        elif reward == flag_reward_1_2:  # -1
+            temp['reward'] = reward
+            temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
+        elif reward == flag_reward_2_1:  # -1
+            temp['reward'] = reward
+            temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
+        elif reward == flag_reward_2_2:  # -1
+            temp['reward'] = reward
+            temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
+        elif reward == flag_reward_3_1:  # -1
+            temp['reward'] = reward
+            temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
+        elif reward == flag_reward_3_2:  # -1
+            temp['reward'] = reward
+            temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
         temp['coords'] = self.canvas.coords(temp['figure'])
         temp['state'] = state  # 입력을 그대로 3d
         self.rewards.append(temp)

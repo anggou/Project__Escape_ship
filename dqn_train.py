@@ -1,6 +1,7 @@
 import os
 import sys
-from dss_environment import Env
+# from dss_environment import Env
+from small_env import Env
 import pylab
 import random
 import numpy as np
@@ -46,7 +47,8 @@ class DQNAgent:
         self.epsilon = 1.0
         self.epsilon_decay = 0.999
         self.epsilon_min = 0.01
-        self.train_start = 1000
+        self.train_start = 100
+        # self.train_start = 30
         self.model = DQN(self.action_size)
         self.target_model = DQN(self.action_size)
         # 모델과 타깃 모델 생성
@@ -76,7 +78,7 @@ class DQNAgent:
     # 샘플 <s, a, r, s'>을 리플레이 메모리에 저장
     def append_sample(self, state, action, reward, next_state, done):
         self.memory.append((state, action, reward, next_state, done))
-
+        print("append",len(agent.memory))
     # 리플레이 메모리에서 무작위로 추출한 배치로 모델 학습
     def train_model(self):
         if self.epsilon > self.epsilon_min:
@@ -116,7 +118,7 @@ class DQNAgent:
 
 if __name__ == "__main__":
     # CartPole-v1 환경, 최대 타임스텝 수가 500
-    env = Env(render_speed=0.001) # 0.001
+    env = Env(render_speed=0.01) # 0.001
     state_size = 12
     action_space = [0, 1, 2, 3, 4, 5]
     action_size = len(action_space)
@@ -145,8 +147,10 @@ if __name__ == "__main__":
             agent.append_sample(state, action, reward, next_state, done)
             # 매 타임스텝마다 학습
             if len(agent.memory) >= agent.train_start:
+                print(1)
                 agent.train_model()
-
+                env.canvas.delete("text")
+                text_obj = env.draw_from_policy(state, agent.model(state))
             if done == 1 : # 불만났을때 추가
                 score += reward
             state = next_state

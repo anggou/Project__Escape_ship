@@ -988,7 +988,12 @@ class Env(tk.Tk):
             self.canvas.delete(reward['figure'])
         self.rewards.clear()
         self.goal.clear()
-
+        self.set_reward(flag_location_1_1, flag_reward_1_1)
+        self.set_reward(flag_location_1_2, flag_reward_1_2)
+        self.set_reward(flag_location_2_1, flag_reward_2_1)
+        self.set_reward(flag_location_2_2, flag_reward_2_2)
+        self.set_reward(flag_location_3_1, flag_reward_3_1)
+        self.set_reward(flag_location_3_2, flag_reward_3_2)
         self.set_reward(lifeboat_location_1, lifeboat_reward)
         self.set_reward(lifeboat_location_2, lifeboat_reward)
         self.set_reward(fire_location, fire_reward)
