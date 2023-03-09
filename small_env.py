@@ -4,9 +4,9 @@ import tkinter as tk
 from PIL import ImageTk, Image
 import random
 
-H_UNIT = 7*5  # 픽셀 수
+H_UNIT = 7 * 5  # 픽셀 수
 HEIGHT = 22  # 그리드 세로
-W_UNIT = 15*3  # 픽셀 수
+W_UNIT = 15 * 3  # 픽셀 수
 WIDTH = 30  # 그리드 가로
 FLOOR = 3
 PhotoImage = ImageTk.PhotoImage
@@ -144,23 +144,23 @@ class Env(tk.Tk):
         self.set_reward(lifeboat_location_1, lifeboat_reward)
         self.set_reward(lifeboat_location_2, lifeboat_reward)
         self.set_reward(fire_location, fire_reward)
-        for z in range(FLOOR):
-            for y in range(HEIGHT):
-                for x in range(WIDTH):
-                    if maze[z][y][x] == 1:
-                        self.set_reward([z, y, x], block_reward)
-                    if maze[z][y][x] == 2:
-                        self.set_reward([z, y, x], stair_reward)
-                    if z < 7:
-                        if maze[z][y][x] == 3:
-                            self.set_reward([z, y, x], wrong_reward)
-                        if maze[z][y][x] == 4:
-                            self.set_reward([z, y, x], right_reward)
-                    if z > 7:
-                        if maze[z][y][x] == 3:
-                            self.set_reward([z, y, x], right_reward)
-                        if maze[z][y][x] == 4:
-                            self.set_reward([z, y, x], wrong_reward)
+        # for z in range(FLOOR):
+        #     for y in range(HEIGHT):
+        #         for x in range(WIDTH):
+        #             if maze[z][y][x] == 1:
+        #                 self.set_reward([z, y, x], block_reward)
+        #             if maze[z][y][x] == 2:
+        #                 self.set_reward([z, y, x], stair_reward)
+        #             if z < 7:
+        #                 if maze[z][y][x] == 3:
+        #                     self.set_reward([z, y, x], wrong_reward)
+        #                 if maze[z][y][x] == 4:
+        #                     self.set_reward([z, y, x], right_reward)
+        #             if z > 7:
+        #                 if maze[z][y][x] == 3:
+        #                     self.set_reward([z, y, x], right_reward)
+        #                 if maze[z][y][x] == 4:
+        #                     self.set_reward([z, y, x], wrong_reward)
 
         self.rectangle = self.canvas.create_image(place_tk(AG)[0],
                                                   place_tk(AG)[1],
@@ -171,8 +171,6 @@ class Env(tk.Tk):
         # self.set_reward(flag_location_2_2, flag_reward_2_2)
         # self.set_reward(flag_location_3_1, flag_reward_3_1)
         # self.set_reward(flag_location_3_2, flag_reward_3_2)
-
-
 
         # 메인 격자
         for col in range(0, 1 * WIDTH * W_UNIT, W_UNIT):  # 0~400 by 80
@@ -189,13 +187,32 @@ class Env(tk.Tk):
             x0, y0, x1, y1 = 0, row, WIDTH * W_UNIT * 1, row
             self.canvas.create_line(x0, y0, x1, y1, fill='red')
 
-    def __del__(self):
-        # 캔버스 객체 삭제 및 자원 해제
-        self.canvas.delete('all')
-        self.canvas.quit()
-
+    def draw_from_policy(self, state, q_values):  # state, q함수
+        font = 7
+        dz = state[0][0] #re-ag
+        dy = state[0][1]
+        dx = state[0][2]
+        z = lifeboat_location_1[0] - dz
+        y = lifeboat_location_1[1] - dy
+        x = lifeboat_location_1[2] - dx
+        self.canvas.create_text(x * W_UNIT + W_UNIT / 2 + W_UNIT / 4,
+                                (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2,
+                                fill="black", text=round(q_values[0][0].numpy(),2), font=('Helvetica', font), anchor="nw", tags="text")
+        self.canvas.create_text(x * W_UNIT + W_UNIT / 2 - W_UNIT / 4,
+                                (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2,
+                                fill="black", text=round(q_values[0][1].numpy(),2), font=('Helvetica', font), anchor="nw", tags="text")
+        self.canvas.create_text(x * W_UNIT + W_UNIT / 2,
+                                (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2 + H_UNIT / 4,
+                                fill="black", text=round(q_values[0][2].numpy(),2), font=('Helvetica', font), anchor="nw", tags="text")
+        self.canvas.create_text(x * W_UNIT + W_UNIT / 2,
+                                (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2 - H_UNIT / 4,
+                                fill="black", text=round(q_values[0][3].numpy(),2), font=('Helvetica', font), anchor="nw", tags="text")
+        self.canvas.create_text(x * W_UNIT + W_UNIT / 2, (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2,
+                                fill="black", text=round(q_values[0][4].numpy(),2), font=('Helvetica', font), anchor="nw", tags="text")
+        self.canvas.create_text(x * W_UNIT + W_UNIT / 2, (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2,
+                                fill="black", text=round(q_values[0][5].numpy(),2), font=('Helvetica', font), anchor="nw", tags="text")
+        print(q_values[0][5])
     def _build_canvas(self):
-
         canvas = tk.Canvas(self, width=3 * WIDTH * W_UNIT, height=5 * HEIGHT * H_UNIT)
 
         for z in range(FLOOR):
@@ -367,10 +384,10 @@ class Env(tk.Tk):
         check = self.check_if_reward(next_state)  # reward, goal dict
         done = check['if_goal']
         reward = check['rewards']
-        self.canvas.tag_raise(self.rectangle) #눈에 띄게 해줌
+        self.canvas.tag_raise(self.rectangle)  # 눈에 띄게 해줌
 
         state_all = self.get_state(self.rectangle)
-        print("move_{} next_state_{} reward_{}".format(action,next_state,reward))
+        print("move_{} next_state_{} reward_{}".format(action, next_state, reward))
         return state_all, reward, done
 
     def get_state(self, Agent):
@@ -383,9 +400,9 @@ class Env(tk.Tk):
             # states.append(reward['direction'])
             if reward['reward'] == lifeboat_reward:
                 reward_location = reward['state']
-                states.append(reward_location[0] - location[0])  # 상대거리
-                states.append(reward_location[1] - location[1])  # 상대거리
-                states.append(reward_location[2] - location[2])  # 상대거리
+                states.append(reward_location[0] - location[0])  # z상대거리
+                states.append(reward_location[1] - location[1])  # y상대거리
+                states.append(reward_location[2] - location[2])  # x상대거리
                 states.append(1)
             elif reward['reward'] == fire_reward:
                 reward_location = reward['state']

@@ -12,6 +12,7 @@ import os
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
+
 # 딥살사 인공신경망
 class DeepSARSA(tf.keras.Model):  # 6
     def __init__(self, action_size):  # 6
@@ -45,7 +46,7 @@ class DeepSARSAgent:
 
     # 입실론 탐욕 정책으로 행동 선택
     def get_action(self, state):
-        if np.random.rand() <= self.epsilon: #0~1 사이 실수 입실론 값이 작아질수록 탐험 적게
+        if np.random.rand() <= self.epsilon:  # 0~1 사이 실수 입실론 값이 작아질수록 탐험 적게
             return random.randrange(self.action_size)
         else:
             q_values = self.model(state)  # ANN 사용해서 Q테이블 불러오기
@@ -54,7 +55,7 @@ class DeepSARSAgent:
 
     # <s, a, r, s', a'>의 샘플로부터 모델 업데이트
     def train_model(self, state, action, reward, next_state, next_action, done):
-        if self.epsilon > self.epsilon_min:   # 스텝이 진행될수록,
+        if self.epsilon > self.epsilon_min:  # 스텝이 진행될수록,
             self.epsilon *= self.epsilon_decay
 
         # 학습 파라메터
@@ -63,27 +64,29 @@ class DeepSARSAgent:
             tape.watch(model_params)
             predict = self.model(state)[0]  # state=12개 , 출력은 q-value 6개
             one_hot_action = tf.one_hot([action], self.action_size)  # action_size = 6, 액션에 해당하는 곳만 1 [010000]
-            predict = tf.reduce_sum(one_hot_action * predict, axis=1) # q 함수 핫코딩 형식 [040000] > 4 곱한뒤 더함
+            predict = tf.reduce_sum(one_hot_action * predict, axis=1)  # q 함수 핫코딩 형식 [040000] > 4 곱한뒤 더함
 
             # done = True 일 경우 에피소드가 끝나서 다음 상태가 없음
-            next_q = self.model(next_state)[0][next_action] #  값 하나,
+            next_q = self.model(next_state)[0][next_action]  # 값 하나,
             target = reward + (1 - done) * self.discount_factor * next_q
             # print(target)
             # MSE 오류 함수 계산
             loss = tf.reduce_mean(tf.square(target - predict))
-        #오류함수를 구할때, 강화학습알고리즘을 사용
+        # 오류함수를 구할때, 강화학습알고리즘을 사용
         # 오류함수를 줄이는 방향으로 모델 업데이트
         grads = tape.gradient(loss, model_params)
         self.optimizer.apply_gradients(zip(grads, model_params))
 
 
+
+
 if __name__ == "__main__":
     # 환경과 에이전트 생성
-    env = Env(render_speed=0.1) # 0.001
+    env = Env(render_speed=10)  # 0.001
     state_size = 12
     action_space = [0, 1, 2, 3, 4, 5]
     action_size = len(action_space)
-    agent = DeepSARSAgent(state_size, action_size) #12,
+    agent = DeepSARSAgent(state_size, action_size)  # 12,
     scores, episodes = [], []
 
     EPISODES = 1000
@@ -93,11 +96,9 @@ if __name__ == "__main__":
         # env 초기화
         state = env.reset()  # 12개 변수
         state = np.reshape(state, [1, state_size])  # state_size = 12개
-
         while not done:
             # 현재 상태에 대한 행동 선택
             action = agent.get_action(state)  # 모델을 통해 q 함수 최댓값 가져옴
-
             # 선택한 행동으로 환경에서 한 타임스텝 진행 후 샘플 수집
             next_state, reward, done = env.step(action)  # 여기서 state
             next_state = np.reshape(next_state, [1, state_size])
@@ -105,8 +106,10 @@ if __name__ == "__main__":
 
             # 샘플로 모델 학습
 
-            agent.train_model(state, action, reward, next_state, next_action, done) # 12,1,1,12,1,1
-            if done == 1 : # 불만났을때 추가
+            agent.train_model(state, action, reward, next_state, next_action, done)  # 12,1,1,12,1,1
+            env.canvas.delete("text")
+            text_obj = env.draw_from_policy(state, agent.model(state))
+            if done == 1:  # 불만났을때 추가
                 score += reward
             state = next_state
 
