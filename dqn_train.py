@@ -42,7 +42,7 @@ class DQNAgent:
 
         # DQN 하이퍼파라미터
         self.discount_factor = 0.99
-        self.learning_rate = 0.001
+        self.learning_rate = 0.01
         self.epsilon = 1.0
         self.epsilon_decay = 0.999
         self.epsilon_min = 0.01
@@ -157,7 +157,7 @@ if __name__ == "__main__":
                 # 에피소드마다 학습 결과 출력
                 print("episode: {:3d} | score: {:3d} | epsilon: {:.3f}".format(
                     e, score, agent.epsilon))
-                self.epsilon_decay = 0.999
+                DQNAgent.epsilon = 1
                 # 에피소드마다 학습 결과 그래프로 저장
                 scores.append(score)
                 episodes.append(e)

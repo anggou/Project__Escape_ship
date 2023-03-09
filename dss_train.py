@@ -2,7 +2,8 @@ import copy
 import pylab
 import random
 import numpy as np
-from dss_environment import Env
+# from dss_environment import Env
+from small_env import Env
 import tensorflow as tf
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.optimizers import Adam
