@@ -78,7 +78,6 @@ class DQNAgent:
     # 샘플 <s, a, r, s'>을 리플레이 메모리에 저장
     def append_sample(self, state, action, reward, next_state, done):
         self.memory.append((state, action, reward, next_state, done))
-        print("append",len(agent.memory))
     # 리플레이 메모리에서 무작위로 추출한 배치로 모델 학습
     def train_model(self):
         if self.epsilon > self.epsilon_min:
@@ -147,7 +146,6 @@ if __name__ == "__main__":
             agent.append_sample(state, action, reward, next_state, done)
             # 매 타임스텝마다 학습
             if len(agent.memory) >= agent.train_start:
-                print(1)
                 agent.train_model()
                 env.canvas.delete("text")
                 text_obj = env.draw_from_policy(state, agent.model(state))

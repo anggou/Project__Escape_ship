@@ -211,7 +211,7 @@ class Env(tk.Tk):
                                 fill="black", text=round(q_values[0][4].numpy(),1), font=('Helvetica', font), anchor="nw", tags="text")
         self.canvas.create_text(x * W_UNIT + W_UNIT / 3, (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2,
                                 fill="black", text=round(q_values[0][5].numpy(),1), font=('Helvetica', font), anchor="nw", tags="text")
-        print(q_values[0][5])
+        print(q_values[0][0].numpy(),q_values[0][1].numpy(),q_values[0][2].numpy(),q_values[0][3].numpy(),q_values[0][4].numpy(),q_values[0][5].numpy())
     def _build_canvas(self):
         canvas = tk.Canvas(self, width=3 * WIDTH * W_UNIT, height=5 * HEIGHT * H_UNIT)
 
