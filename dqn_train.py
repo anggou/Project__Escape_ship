@@ -44,8 +44,9 @@ class DQNAgent:
         # DQN 하이퍼파라미터
         self.discount_factor = 0.99
         self.learning_rate = 0.01
+        # self.epsilon = 1000.0
         self.epsilon = 1.0
-        self.epsilon_decay = 0.999
+        self.epsilon_decay = 0.99999999999
         self.epsilon_min = 0.01
         self.train_start = 100
         # self.train_start = 30
@@ -69,6 +70,7 @@ class DQNAgent:
     # 입실론 탐욕 정책으로 행동 선택
     def get_action(self, state):
         if np.random.rand() <= self.epsilon:
+        # if np.random.uniform(low=100, high=1000) <= self.epsilon:
             print("Explore")
             return random.randrange(self.action_size)
         else:
