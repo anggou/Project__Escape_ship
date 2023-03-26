@@ -35,30 +35,30 @@ flag_reward_2_2 = 2
 
 maze = [
     [
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-        ],
-        [
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    ],
+    [
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1],
         [1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
@@ -81,8 +81,8 @@ maze = [
         [1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
         [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    ]
 ]
-        ]
 
 
 def five(n):
@@ -116,13 +116,13 @@ class Env(tk.Tk):
         self.counter = 0
         self.rewards = []
         self.goal = []
+        self.explore = 0
         # 목표 지점 설정
         for z in range(FLOOR):
             for y in range(HEIGHT):
                 for x in range(WIDTH):
                     if maze[z][y][x] == 1:
                         self.set_reward([z, y, x], block_reward)
-
 
         self.rectangle = self.canvas.create_image(place_tk(AG)[0], place_tk(AG)[1],
                                                   image=self.shapes[0])  # 3D>2D
@@ -165,37 +165,60 @@ class Env(tk.Tk):
         # for row in range(0, 3 * HEIGHT * H_UNIT, H_UNIT * HEIGHT):  # 0~400 by 80
         #     x0, y0, x1, y1 = 0, row, WIDTH * W_UNIT * 1, row
         #     self.canvas.create_line(x0, y0, x1, y1, fill='red')
+
     def create_widgets(self):
         self.label = tk.Label(self, text="Render(below : 0.1) : ")
-        self.label.place(x=WIDTH * W_UNIT+10, y=10)
+        self.label.place(x=WIDTH * W_UNIT + 10, y=10)
 
         self.entry = tk.Entry(self)
-        self.entry.place(x=WIDTH * W_UNIT+10, y=30)
+        self.entry.place(x=WIDTH * W_UNIT + 10, y=30)
 
-        self.button = tk.Button(self, text="Submit", command=self.submit)
-        self.button.place(x=WIDTH * W_UNIT+10, y=50)
+        self.button_1 = tk.Button(self, text="Submit", command=self.submit)
+        self.button_1.place(x=WIDTH * W_UNIT + 10, y=50)
+
+        self.button_2 = tk.Button(self, text="Explore", command=self.set_explore, relief=tk.RAISED)
+        self.button_2.place(x=WIDTH * W_UNIT + 10, y=100)
+        self.button_2.bind('<ButtonPress-1>', self.on_press)
+        self.button_2.bind_all('<ButtonRelease-1>', self.on_release)
+
+    def set_explore(self):
+        self.explore = 1
+
+    def on_press(self, event):
+        print("Button pressed")
+        self.button_2.config(relief=tk.SUNKEN)
+        self.set_explore()
+
+    def on_release(self, event):
+        print("Button released")
+        self.button_2.config(relief=tk.RAISED)
+        self.explore = 0
 
     def draw_from_policy(self, state, q_values):  # state, q함수
         font = 7
-        dz = state[0][0] #re-ag
+        dz = state[0][0]  # re-ag
         dy = state[0][1]
         dx = state[0][2]
         z = lifeboat_location_1[0] - dz
         y = lifeboat_location_1[1] - dy
         x = lifeboat_location_1[2] - dx
         self.canvas.create_text(x * W_UNIT + W_UNIT / 2 + W_UNIT / 4,
-                                (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2- H_UNIT / 4,
-                                fill="black", text=round(q_values[0][0].numpy(),1), font=('Helvetica', font), anchor="nw", tags="text")
+                                (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2 - H_UNIT / 4,
+                                fill="black", text=round(q_values[0][0].numpy(), 1), font=('Helvetica', font),
+                                anchor="nw", tags="text")
         self.canvas.create_text(x * W_UNIT + W_UNIT / 2 - W_UNIT / 2,
-                                (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2- H_UNIT / 4,
-                                fill="black", text=round(q_values[0][1].numpy(),1), font=('Helvetica', font), anchor="nw", tags="text")
+                                (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2 - H_UNIT / 4,
+                                fill="black", text=round(q_values[0][1].numpy(), 1), font=('Helvetica', font),
+                                anchor="nw", tags="text")
         self.canvas.create_text(x * W_UNIT + W_UNIT / 3,
-                                (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2 - H_UNIT / 4- H_UNIT / 4,
-                                fill="black", text=round(q_values[0][2].numpy(),1), font=('Helvetica', font), anchor="nw", tags="text")
+                                (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2 - H_UNIT / 4 - H_UNIT / 4,
+                                fill="black", text=round(q_values[0][2].numpy(), 1), font=('Helvetica', font),
+                                anchor="nw", tags="text")
         self.canvas.create_text(x * W_UNIT + W_UNIT / 3,
                                 (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2 + H_UNIT / 3,
-                                fill="black", text=round(q_values[0][3].numpy(),1), font=('Helvetica', font), anchor="nw", tags="text")
-        print(q_values[0][0].numpy(),q_values[0][1].numpy(),q_values[0][2].numpy(),q_values[0][3].numpy())
+                                fill="black", text=round(q_values[0][3].numpy(), 1), font=('Helvetica', font),
+                                anchor="nw", tags="text")
+        print(q_values[0][0].numpy(), q_values[0][1].numpy(), q_values[0][2].numpy(), q_values[0][3].numpy())
 
     def _build_canvas(self):
         canvas = tk.Canvas(self, width=3 * WIDTH * W_UNIT, height=5 * HEIGHT * H_UNIT)
@@ -222,6 +245,7 @@ class Env(tk.Tk):
         canvas.pack()
 
         return canvas
+
     def load_images(self):
         rectangle = PhotoImage(Image.open("../Escape_ship/img/rectangle.png").resize((W_UNIT, H_UNIT)))
         triangle = PhotoImage(Image.open("../Escape_ship/img/triangle.png").resize((W_UNIT, H_UNIT)))
@@ -255,8 +279,6 @@ class Env(tk.Tk):
                     if maze[z][y][x] == 1:
                         self.set_reward([z, y, x], block_reward)
 
-
-
     def submit(self):
         number = self.entry.get()
         print("Number entered:", number)
@@ -266,6 +288,7 @@ class Env(tk.Tk):
             print("Render speed set to:", self.render_speed)
         except ValueError:
             print("Invalid number entered")
+
     def set_reward(self, state, reward):  # 들어가는 state는 3D
 
         temp = {}
@@ -306,12 +329,12 @@ class Env(tk.Tk):
         elif reward == flag_reward_2_2:  # -1
             temp['reward'] = reward
             temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
-        elif reward == flag_reward_3_1:  # -1
-            temp['reward'] = reward
-            temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
-        elif reward == flag_reward_3_2:  # -1
-            temp['reward'] = reward
-            temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
+        # elif reward == flag_reward_3_1:  # -1
+        #     temp['reward'] = reward
+        #     temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
+        # elif reward == flag_reward_3_2:  # -1
+        #     temp['reward'] = reward
+        #     temp['figure'] = self.canvas.create_image(tk_x, tk_y, image=self.shapes[6])
         temp['coords'] = self.canvas.coords(temp['figure'])
         temp['state'] = state  # 입력을 그대로 3d
         self.rewards.append(temp)

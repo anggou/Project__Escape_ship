@@ -16,7 +16,6 @@ os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 
-
 # 상태가 입력, 큐함수가 출력인 인공신경망 생성
 class DQN(tf.keras.Model):
     def __init__(self, action_size):
@@ -58,7 +57,7 @@ class DQNAgent:
 
         # 리플레이 메모리, 최대 크기 2000
         self.memory = deque(maxlen=2000)
-        #경험리플레이 에서 꺼내는 샘플양
+        # 경험리플레이 에서 꺼내는 샘플양
         self.batch_size = 64
 
         # 타깃 모델 초기화
@@ -69,18 +68,24 @@ class DQNAgent:
         self.target_model.set_weights(self.model.get_weights())
 
     # 입실론 탐욕 정책으로 행동 선택
-    def get_action(self, state):
+    def get_action_1(self, state):
+        print("action_1")
         if np.random.rand() <= self.epsilon:
-        # if np.random.uniform(low=100, high=1000) <= self.epsilon:
+            # if np.random.uniform(low=100, high=1000) <= self.epsilon:
             print("Explore")
             return random.randrange(self.action_size)
         else:
             q_value = self.model(state)
             return np.argmax(q_value[0])
+    def get_action_2(self, state):
+        print("action_2")
+        q_value = self.model(state)
+        return np.argmax(q_value[0])
 
     # 샘플 <s, a, r, s'>을 리플레이 메모리에 저장
     def append_sample(self, state, action, reward, next_state, done):
         self.memory.append((state, action, reward, next_state, done))
+
     # 리플레이 메모리에서 무작위로 추출한 배치로 모델 학습
     def train_model(self):
         if self.epsilon > self.epsilon_min:
@@ -105,7 +110,7 @@ class DQNAgent:
 
             # 다음 상태에 대한 타깃 모델의 큐함수
             target_predicts = self.target_model(next_states)
-            #target model이 학습하는것을 방지
+            # target model이 학습하는것을 방지
             target_predicts = tf.stop_gradient(target_predicts)
 
             # 벨만 최적 방정식을 이용한 업데이트 타깃
@@ -120,12 +125,12 @@ class DQNAgent:
 
 if __name__ == "__main__":
     # CartPole-v1 환경, 최대 타임스텝 수가 500
-    env = Env(render_speed=0.01) # 0.001
+    env = Env(render_speed=0.01)  # 0.001
     state_size = 12
     action_space = [0, 1, 2, 3]
     # action_space = [0, 1, 2, 3, 4, 5]
     action_size = len(action_space)
-    agent = DQNAgent(state_size, action_size) #12,
+    agent = DQNAgent(state_size, action_size)  # 12,
     scores, episodes = [], []
 
     EPISODES = 1000
@@ -141,8 +146,11 @@ if __name__ == "__main__":
                 env.render()
 
             # 현재 상태로 행동을 선택
+            if env.explore == 0:
+                action = agent.get_action_1(state)
+            else :
+                action = agent.get_action_2(state)
 
-            action = agent.get_action(state)
             # 선택한 행동으로 환경에서 한 타임스텝 진행
             next_state, reward, done = env.step(action)
             next_state = np.reshape(next_state, [1, state_size])
@@ -154,7 +162,7 @@ if __name__ == "__main__":
                 agent.train_model()
                 env.canvas.delete("text")
                 text_obj = env.draw_from_policy(state, agent.model(state))
-            if done == 1 : # 불만났을때 추가
+            if done == 1:  # 불만났을때 추가
                 score += reward
             state = next_state
 
