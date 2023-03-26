@@ -2,7 +2,7 @@ import os
 import sys
 # from dss_environment import Env
 # from small_env import Env
-from 2d_small_4move import Env
+from small_4move import Env
 import pylab
 import random
 import numpy as np

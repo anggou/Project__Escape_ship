@@ -8,7 +8,7 @@ H_UNIT = 7 * 5  # 픽셀 수
 HEIGHT = 22  # 그리드 세로
 W_UNIT = 15 * 3  # 픽셀 수
 WIDTH = 30  # 그리드 가로
-FLOOR = 3
+FLOOR = 2
 PhotoImage = ImageTk.PhotoImage
 AG = [1, 8, 27]  # z,y,x
 lifeboat_location_1 = [1, 3, 9]
@@ -17,8 +17,8 @@ flag_location_1_1 = [1, 3, 24]
 flag_location_1_2 = [1, 18, 24]
 flag_location_2_1 = [1, 4, 12]
 flag_location_2_2 = [1, 17, 12]
-flag_location_3_1 = [1, 3, 9]
-flag_location_3_2 = [1, 18, 9]
+# flag_location_3_1 = [1, 3, 9]
+# flag_location_3_2 = [1, 18, 9]
 fire_location = [1, 4, 9]
 lifeboat_reward = 10
 fire_reward = -10
@@ -30,10 +30,36 @@ flag_reward_1_1 = 1
 flag_reward_1_2 = 1
 flag_reward_2_1 = 2
 flag_reward_2_2 = 2
-flag_reward_3_1 = 3
-flag_reward_3_2 = 3
+# flag_reward_3_1 = 3
+# flag_reward_3_2 = 3
 
-maze = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+maze = [
+    [
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        ],
+        [
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1],
         [1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
         [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
@@ -56,6 +82,7 @@ maze = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ]
+        ]
 
 
 def five(n):
@@ -82,7 +109,7 @@ class Env(tk.Tk):
         self.render_speed = render_speed
         self.action_space = ['f', 'b', 'l', 'r']
         self.action_size = len(self.action_space)
-        self.title('DeepSARSA')
+        self.title('DQN_4move')
         self.geometry('{0}x{1}'.format(3 * WIDTH * W_UNIT, 5 * HEIGHT * H_UNIT))
         self.shapes = self.load_images()
         self.canvas = self._build_canvas()
@@ -90,37 +117,25 @@ class Env(tk.Tk):
         self.rewards = []
         self.goal = []
         # 목표 지점 설정
+        for z in range(FLOOR):
+            for y in range(HEIGHT):
+                for x in range(WIDTH):
+                    if maze[z][y][x] == 1:
+                        self.set_reward([z, y, x], block_reward)
+
+
+        self.rectangle = self.canvas.create_image(place_tk(AG)[0], place_tk(AG)[1],
+                                                  image=self.shapes[0])  # 3D>2D
         self.set_reward(lifeboat_location_1, lifeboat_reward)
         self.set_reward(lifeboat_location_2, lifeboat_reward)
         self.set_reward(fire_location, fire_reward)
-        # for z in range(FLOOR):
-        #     for y in range(HEIGHT):
-        #         for x in range(WIDTH):
-        #             if maze[z][y][x] == 1:
-        #                 self.set_reward([z, y, x], block_reward)
-        #             if maze[z][y][x] == 2:
-        #                 self.set_reward([z, y, x], stair_reward)
-        #             if z < 7:
-        #                 if maze[z][y][x] == 3:
-        #                     self.set_reward([z, y, x], wrong_reward)
-        #                 if maze[z][y][x] == 4:
-        #                     self.set_reward([z, y, x], right_reward)
-        #             if z > 7:
-        #                 if maze[z][y][x] == 3:
-        #                     self.set_reward([z, y, x], right_reward)
-        #                 if maze[z][y][x] == 4:
-        #                     self.set_reward([z, y, x], wrong_reward)
-
-        self.rectangle = self.canvas.create_image(place_tk(AG)[0],
-                                                  place_tk(AG)[1],
-                                                  image=self.shapes[0])  # 3D>2D
         self.set_reward(flag_location_1_1, flag_reward_1_1)
         self.set_reward(flag_location_1_2, flag_reward_1_2)
         self.set_reward(flag_location_2_1, flag_reward_2_1)
         self.set_reward(flag_location_2_2, flag_reward_2_2)
-        self.set_reward(flag_location_3_1, flag_reward_3_1)
-        self.set_reward(flag_location_3_2, flag_reward_3_2)
-
+        # self.set_reward(flag_location_3_1, flag_reward_3_1)
+        # self.set_reward(flag_location_3_2, flag_reward_3_2)
+        self.create_widgets()
         # 메인 격자
         for col in range(0, 1 * WIDTH * W_UNIT, W_UNIT):  # 0~400 by 80
             x0, y0, x1, y1 = col, 0, col, HEIGHT * H_UNIT * 3
@@ -135,6 +150,30 @@ class Env(tk.Tk):
         for row in range(0, 3 * HEIGHT * H_UNIT, H_UNIT * HEIGHT):  # 0~400 by 80
             x0, y0, x1, y1 = 0, row, WIDTH * W_UNIT * 1, row
             self.canvas.create_line(x0, y0, x1, y1, fill='red')
+
+        # # 메인 격자
+        # for col in range(0, 1 * WIDTH * W_UNIT, W_UNIT):  # 0~400 by 80
+        #     x0, y0, x1, y1 = col, 0, col, HEIGHT * H_UNIT * 3
+        #     self.canvas.create_line(x0, y0, x1, y1)
+        # for row in range(0, 3 * HEIGHT * H_UNIT, H_UNIT):  # 0~400 by 80
+        #     x0, y0, x1, y1 = 0, row, WIDTH * W_UNIT * 1, row
+        #     self.canvas.create_line(x0, y0, x1, y1)
+        # # 층별 구분
+        # for col in range(0, 1 * WIDTH * W_UNIT, W_UNIT * WIDTH):  # 0~400 by 80
+        #     x0, y0, x1, y1 = col, 0, col, HEIGHT * H_UNIT * 3
+        #     self.canvas.create_line(x0, y0, x1, y1, fill='red')
+        # for row in range(0, 3 * HEIGHT * H_UNIT, H_UNIT * HEIGHT):  # 0~400 by 80
+        #     x0, y0, x1, y1 = 0, row, WIDTH * W_UNIT * 1, row
+        #     self.canvas.create_line(x0, y0, x1, y1, fill='red')
+    def create_widgets(self):
+        self.label = tk.Label(self, text="Render(below : 0.1) : ")
+        self.label.place(x=WIDTH * W_UNIT+10, y=10)
+
+        self.entry = tk.Entry(self)
+        self.entry.place(x=WIDTH * W_UNIT+10, y=30)
+
+        self.button = tk.Button(self, text="Submit", command=self.submit)
+        self.button.place(x=WIDTH * W_UNIT+10, y=50)
 
     def draw_from_policy(self, state, q_values):  # state, q함수
         font = 7
@@ -157,6 +196,7 @@ class Env(tk.Tk):
                                 (z - 1) * HEIGHT * H_UNIT + y * H_UNIT + H_UNIT / 2 + H_UNIT / 3,
                                 fill="black", text=round(q_values[0][3].numpy(),1), font=('Helvetica', font), anchor="nw", tags="text")
         print(q_values[0][0].numpy(),q_values[0][1].numpy(),q_values[0][2].numpy(),q_values[0][3].numpy())
+
     def _build_canvas(self):
         canvas = tk.Canvas(self, width=3 * WIDTH * W_UNIT, height=5 * HEIGHT * H_UNIT)
 
@@ -182,7 +222,6 @@ class Env(tk.Tk):
         canvas.pack()
 
         return canvas
-
     def load_images(self):
         rectangle = PhotoImage(Image.open("../Escape_ship/img/rectangle.png").resize((W_UNIT, H_UNIT)))
         triangle = PhotoImage(Image.open("../Escape_ship/img/triangle.png").resize((W_UNIT, H_UNIT)))
@@ -201,49 +240,32 @@ class Env(tk.Tk):
             self.canvas.delete(reward['figure'])
         self.rewards.clear()
         self.goal.clear()
-        if self.randfire[1] > 5 and self.randfire[0] < 5
+        self.set_reward(lifeboat_location_1, lifeboat_reward)
+        self.set_reward(lifeboat_location_2, lifeboat_reward)
+        self.set_reward(fire_location, fire_reward)
         self.set_reward(flag_location_1_1, flag_reward_1_1)
         self.set_reward(flag_location_1_2, flag_reward_1_2)
         self.set_reward(flag_location_2_1, flag_reward_2_1)
         self.set_reward(flag_location_2_2, flag_reward_2_2)
-        self.set_reward(flag_location_3_1, flag_reward_3_1)
-        self.set_reward(flag_location_3_2, flag_reward_3_2)
-        self.set_reward(lifeboat_location_1, lifeboat_reward)
-        self.set_reward(lifeboat_location_2, lifeboat_reward)
-        self.set_reward(fire_location, fire_reward)
+        # self.set_reward(flag_location_3_1, flag_reward_3_1)
+        # self.set_reward(flag_location_3_2, flag_reward_3_2)
         for z in range(FLOOR):
             for y in range(HEIGHT):
                 for x in range(WIDTH):
                     if maze[z][y][x] == 1:
                         self.set_reward([z, y, x], block_reward)
-                    if maze[z][y][x] == 2:
-                        self.set_reward([z, y, x], stair_reward)
-                    if z < 7:
-                        if maze[z][y][x] == 3:
-                            self.set_reward([z, y, x], wrong_reward)
-                        if maze[z][y][x] == 4:
-                            self.set_reward([z, y, x], right_reward)
-                    if z > 7:
-                        if maze[z][y][x] == 3:
-                            self.set_reward([z, y, x], right_reward)
-                        if maze[z][y][x] == 4:
-                            self.set_reward([z, y, x], wrong_reward)
 
-        # 메인 격자
-        for col in range(0, 1 * WIDTH * W_UNIT, W_UNIT):  # 0~400 by 80
-            x0, y0, x1, y1 = col, 0, col, HEIGHT * H_UNIT * 3
-            self.canvas.create_line(x0, y0, x1, y1)
-        for row in range(0, 3 * HEIGHT * H_UNIT, H_UNIT):  # 0~400 by 80
-            x0, y0, x1, y1 = 0, row, WIDTH * W_UNIT * 1, row
-            self.canvas.create_line(x0, y0, x1, y1)
-        # 층별 구분
-        for col in range(0, 1 * WIDTH * W_UNIT, W_UNIT * WIDTH):  # 0~400 by 80
-            x0, y0, x1, y1 = col, 0, col, HEIGHT * H_UNIT * 3
-            self.canvas.create_line(x0, y0, x1, y1, fill='red')
-        for row in range(0, 3 * HEIGHT * H_UNIT, H_UNIT * HEIGHT):  # 0~400 by 80
-            x0, y0, x1, y1 = 0, row, WIDTH * W_UNIT * 1, row
-            self.canvas.create_line(x0, y0, x1, y1, fill='red')
 
+
+    def submit(self):
+        number = self.entry.get()
+        print("Number entered:", number)
+        try:
+            value = float(number)
+            self.render_speed = value
+            print("Render speed set to:", self.render_speed)
+        except ValueError:
+            print("Invalid number entered")
     def set_reward(self, state, reward):  # 들어가는 state는 3D
 
         temp = {}
