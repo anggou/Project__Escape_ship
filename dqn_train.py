@@ -1,7 +1,8 @@
 import os
 import sys
 # from dss_environment import Env
-from small_env import Env
+# from small_env import Env
+from 2d_small_4move import Env
 import pylab
 import random
 import numpy as np
@@ -121,7 +122,8 @@ if __name__ == "__main__":
     # CartPole-v1 환경, 최대 타임스텝 수가 500
     env = Env(render_speed=0.01) # 0.001
     state_size = 12
-    action_space = [0, 1, 2, 3, 4, 5]
+    action_space = [0, 1, 2, 3]
+    # action_space = [0, 1, 2, 3, 4, 5]
     action_size = len(action_space)
     agent = DQNAgent(state_size, action_size) #12,
     scores, episodes = [], []
