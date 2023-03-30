@@ -154,8 +154,9 @@ if __name__ == "__main__":
                 agent.train_model()
                 env.canvas.delete("text")
                 text_obj = env.draw_from_policy(state, agent.model(state))
-            if done == 1 : # 불만났을때 추가
-                score += reward
+            # if done == 1 : # 불만났을때 추가
+            #     score += reward
+            score += reward
             state = next_state
 
             if done:

@@ -46,7 +46,7 @@ class DQNAgent:
         self.learning_rate = 0.01
         # self.epsilon = 1000.0
         self.epsilon = 1.0
-        self.epsilon_decay = 0.99999999999
+        self.epsilon_decay = 0.99999
         self.epsilon_min = 0.01
         self.train_start = 100
         # self.train_start = 30
@@ -58,7 +58,7 @@ class DQNAgent:
         # 리플레이 메모리, 최대 크기 2000
         self.memory = deque(maxlen=2000)
         # 경험리플레이 에서 꺼내는 샘플양
-        self.batch_size = 64
+        self.batch_size = 24
 
         # 타깃 모델 초기화
         self.update_target_model()
@@ -69,16 +69,15 @@ class DQNAgent:
 
     # 입실론 탐욕 정책으로 행동 선택
     def get_action_1(self, state):
-        print("action_1")
         if np.random.rand() <= self.epsilon:
             # if np.random.uniform(low=100, high=1000) <= self.epsilon:
-            print("Explore")
+            # print("Explore")
             return random.randrange(self.action_size)
         else:
             q_value = self.model(state)
             return np.argmax(q_value[0])
+
     def get_action_2(self, state):
-        print("action_2")
         q_value = self.model(state)
         return np.argmax(q_value[0])
 
@@ -126,17 +125,17 @@ class DQNAgent:
 if __name__ == "__main__":
     # CartPole-v1 환경, 최대 타임스텝 수가 500
     env = Env(render_speed=0.01)  # 0.001
-    state_size = 12
+    state_size = 8
     action_space = [0, 1, 2, 3]
     # action_space = [0, 1, 2, 3, 4, 5]
     action_size = len(action_space)
     agent = DQNAgent(state_size, action_size)  # 12,
-    scores, episodes = [], []
+    scores, episodes, steps = [], [], []
 
     EPISODES = 1000
     for e in range(EPISODES):
         done = False
-        score = 1
+        score = 0
         # env 초기화
         state = env.reset()  # 12개 변수
         state = np.reshape(state, [1, state_size])  # state_size = 12개
@@ -148,7 +147,7 @@ if __name__ == "__main__":
             # 현재 상태로 행동을 선택
             if env.explore == 0:
                 action = agent.get_action_1(state)
-            else :
+            else:
                 action = agent.get_action_2(state)
 
             # 선택한 행동으로 환경에서 한 타임스텝 진행
@@ -160,26 +159,31 @@ if __name__ == "__main__":
             # 매 타임스텝마다 학습
             if len(agent.memory) >= agent.train_start:
                 agent.train_model()
-                env.canvas.delete("text")
+                # env.canvas.delete("text")
+                env.canvas.delete(f"text({state[0][1]},{state[0][2]})")
                 text_obj = env.draw_from_policy(state, agent.model(state))
-            if done == 1:  # 불만났을때 추가
-                score += reward
+            # if done == 1:  # 불만났을때 추가
+            score += reward
             state = next_state
 
             if done:
                 # 각 에피소드마다 타깃 모델을 모델의 가중치로 업데이트
                 agent.update_target_model()
                 # 에피소드마다 학습 결과 출력
-                print("episode: {:3d} | score: {:3d} | epsilon: {:.3f}".format(
-                    e, score, agent.epsilon))
-                DQNAgent.epsilon = 1
+                print("episode: {:3d} | score: {:3d} | epsilon: {:.3f} | step : {:5d}".format(
+                    e, score, agent.epsilon, env.counter))
+                # DQNAgent.epsilon = 1
+
                 # 에피소드마다 학습 결과 그래프로 저장
                 scores.append(score)
                 episodes.append(e)
+                steps.append(env.counter)
                 pylab.plot(episodes, scores, 'b')
+                pylab.plot(episodes, steps, 'r')
                 pylab.xlabel("episode")
-                pylab.ylabel("score")
+                pylab.ylabel("score, steps")
                 pylab.savefig("../Escape_ship/save_graph/dqn_graph.png")
+                env.counter = 0
 
                 # 100 에피소드마다 모델 저장
                 if e % 1 == 0:
