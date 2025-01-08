@@ -143,7 +143,7 @@ if __name__ == "__main__":
             # 현재 상태로 행동을 선택
 
             action = agent.get_action(state)
-            # 선택한 행동으로 환경에서 한 타임스텝 진행
+            # 선택한 행동으로 환경에서 한 타임스텝 진행 
             next_state, reward, done = env.step(action)
             next_state = np.reshape(next_state, [1, state_size])
 
